@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author riogesta
  */
-public class conn_db {
+public class Conn_db {
 
     private static Connection mysql_connection;
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static Connection mysqlconn() throws SQLException {
         // TODO code application logic here
         if(mysql_connection == null){
             try {
@@ -33,6 +33,8 @@ public class conn_db {
                 JOptionPane.showMessageDialog(null, "Koneksi database Gagal!\n"+e);
             }
         }
+        
+        return mysql_connection;
     }
     
 }
