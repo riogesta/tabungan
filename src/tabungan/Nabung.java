@@ -148,7 +148,7 @@ public class Nabung extends javax.swing.JFrame {
 
     private void cbPenabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPenabungActionPerformed
         try {
-            String sql = "SELECT * FROM penabung WHERE nama = ?";
+            String sql = "SELECT * FROM tb_penabung WHERE nama = ?";
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, cbPenabung.getSelectedItem().toString());
@@ -226,7 +226,7 @@ public class Nabung extends javax.swing.JFrame {
         try {
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM penabung");
+            ResultSet rs = st.executeQuery("SELECT * FROM tb_penabung");
             
             while(rs.next()){
                 cbPenabung.addItem(rs.getString("nama"));
