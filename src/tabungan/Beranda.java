@@ -98,7 +98,7 @@ public class Beranda extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -118,7 +118,7 @@ public class Beranda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 400, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 380, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -177,7 +177,7 @@ public class Beranda extends javax.swing.JFrame {
         
         try{
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
-            ResultSet rs = conn.createStatement().executeQuery("select * from penabung");
+            ResultSet rs = conn.createStatement().executeQuery("select * from tb_penabung");
             
             while(rs.next()){
                 model_penabung.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
