@@ -22,6 +22,9 @@ public class Nabung extends javax.swing.JFrame {
     /**
      * Creates new form nabung
      */
+    
+    DefaultTableModel model;
+    
     public Nabung() {
         initComponents();
         //
@@ -30,6 +33,10 @@ public class Nabung extends javax.swing.JFrame {
         tfKodePenabung.setVisible(false);
         tfNamaPenabung.setVisible(false);
         //
+        String [] fieldMasuk = {"Nama", "nabung", "Tanggal"};
+        model = new DefaultTableModel(fieldMasuk, 0);
+        tbNabung.setModel(model);
+        showDataNabung();
         
     }
 
@@ -42,7 +49,6 @@ public class Nabung extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbPenabung = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -53,10 +59,11 @@ public class Nabung extends javax.swing.JFrame {
         tfNamaPenabung = new javax.swing.JTextField();
         btnKembali = new javax.swing.JButton();
         btnSimpan = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbNabung = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("mulai nabung");
+        setTitle("Nabung");
 
         jLabel2.setText("penabung");
 
@@ -87,6 +94,19 @@ public class Nabung extends javax.swing.JFrame {
             }
         });
 
+        tbNabung.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "nama", "tanggal", "nabung"
+            }
+        ));
+        jScrollPane1.setViewportView(tbNabung);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,42 +124,44 @@ public class Nabung extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSimpan))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(22, 22, 22)
-                            .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfNamaPenabung))
                         .addComponent(tfNabung)
                         .addComponent(cbPenabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dcTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
-                .addContainerGap(418, Short.MAX_VALUE))
+                        .addComponent(dcTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(dcTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnKembali)
-                    .addComponent(btnSimpan))
-                .addContainerGap(199, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(cbPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(dcTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfNabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnKembali)
+                            .addComponent(btnSimpan))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,6 +202,7 @@ public class Nabung extends javax.swing.JFrame {
             conn.createStatement().executeUpdate("INSERT INTO tb_tabungan VALUES(null, '"+tfKodePenabung.getText()+"', '"+tfNabung.getText()+"', '"+((JTextField)dcTanggal.getDateEditor().getUiComponent()).getText()+"')");
             JOptionPane.showMessageDialog(this, "Tersimpan!");
             resetNabung();
+            showDataNabung();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal tersimpan!\n"+e);
         }
@@ -246,16 +269,39 @@ public class Nabung extends javax.swing.JFrame {
         dcTanggal.setCalendar(null);
         tfNabung.setText(null);
     }
+    
+    public void showDataNabung(){
+        
+        int row = tbNabung.getRowCount();
+        for(int i = 0 ; i < row ; i++){
+            model.removeRow(0);
+        }
+        
+        try{
+            String sql = "SELECT tb_penabung.nama, tb_tabungan.nabung, tb_tabungan.tgl "
+                    + "FROM tb_penabung "
+                    + "INNER JOIN tb_tabungan ON tb_tabungan.kode_penabung = tb_penabung.kode_penabung";
+            Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            
+            while(rs.next()){
+                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3)});
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "kesalahan\n"+e);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox<String> cbPenabung;
     private com.toedter.calendar.JDateChooser dcTanggal;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbNabung;
     private javax.swing.JTextField tfKodePenabung;
     private javax.swing.JTextField tfNabung;
     private javax.swing.JTextField tfNamaPenabung;
