@@ -96,7 +96,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="penabung"/>
+        <Property name="text" type="java.lang.String" value="Penabung"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbPenabung">
@@ -116,14 +116,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="nabung"/>
+        <Property name="text" type="java.lang.String" value="Nabung"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfNabung">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="tanggal"/>
+        <Property name="text" type="java.lang.String" value="Tanggal"/>
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="dcTanggal">
@@ -137,7 +137,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnKembali">
       <Properties>
-        <Property name="text" type="java.lang.String" value="kembali"/>
+        <Property name="text" type="java.lang.String" value="Kembali"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKembaliActionPerformed"/>
@@ -145,7 +145,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnSimpan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="simpan"/>
+        <Property name="text" type="java.lang.String" value="Simpan"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanActionPerformed"/>

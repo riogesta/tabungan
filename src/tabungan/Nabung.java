@@ -33,7 +33,7 @@ public class Nabung extends javax.swing.JFrame {
         tfKodePenabung.setVisible(false);
         tfNamaPenabung.setVisible(false);
         //
-        String [] fieldMasuk = {"Nama", "nabung", "Tanggal"};
+        String [] fieldMasuk = {"Nama", "Nabung", "Tanggal"};
         model = new DefaultTableModel(fieldMasuk, 0);
         tbNabung.setModel(model);
         showDataNabung();
@@ -65,7 +65,7 @@ public class Nabung extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Nabung");
 
-        jLabel2.setText("penabung");
+        jLabel2.setText("Penabung");
 
         cbPenabung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- pilih -" }));
         cbPenabung.addActionListener(new java.awt.event.ActionListener() {
@@ -74,20 +74,20 @@ public class Nabung extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("nabung");
+        jLabel3.setText("Nabung");
 
-        jLabel5.setText("tanggal");
+        jLabel5.setText("Tanggal");
 
         dcTanggal.setDateFormatString("d - MMMM - yyyy");
 
-        btnKembali.setText("kembali");
+        btnKembali.setText("Kembali");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKembaliActionPerformed(evt);
             }
         });
 
-        btnSimpan.setText("simpan");
+        btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanActionPerformed(evt);
