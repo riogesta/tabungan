@@ -42,7 +42,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="TFTelp" max="32767" attributes="0"/>
                           <Component id="TFNama" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" pref="302" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="300" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="BtnSimpan" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -95,24 +95,24 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="register penabung"/>
+        <Property name="text" type="java.lang.String" value="Register Penabung"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="nama"/>
+        <Property name="text" type="java.lang.String" value="Nama"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFNama">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jenis kelamin"/>
+        <Property name="text" type="java.lang.String" value="Jenis kelamin"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="no. telp."/>
+        <Property name="text" type="java.lang.String" value="No. telp."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TFTelp">
@@ -134,12 +134,12 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="alamat"/>
+        <Property name="text" type="java.lang.String" value="Alamat"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BtnSimpan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SIMPAN"/>
+        <Property name="text" type="java.lang.String" value="Simpan"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSimpanActionPerformed"/>
@@ -147,7 +147,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="kembali"/>
+        <Property name="text" type="java.lang.String" value="Kembali"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>

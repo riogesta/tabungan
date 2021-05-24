@@ -49,28 +49,28 @@ public class registerPenabung extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("register penabung");
+        jLabel1.setText("Register Penabung");
 
-        jLabel2.setText("nama");
+        jLabel2.setText("Nama");
 
-        jLabel3.setText("jenis kelamin");
+        jLabel3.setText("Jenis kelamin");
 
-        jLabel4.setText("no. telp.");
+        jLabel4.setText("No. telp.");
 
         TAAlamat.setColumns(20);
         TAAlamat.setRows(5);
         jScrollPane1.setViewportView(TAAlamat);
 
-        jLabel5.setText("alamat");
+        jLabel5.setText("Alamat");
 
-        BtnSimpan.setText("SIMPAN");
+        BtnSimpan.setText("Simpan");
         BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSimpanActionPerformed(evt);
             }
         });
 
-        jButton2.setText("kembali");
+        jButton2.setText("Kembali");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -100,7 +100,7 @@ public class registerPenabung extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TFTelp)
                             .addComponent(TFNama)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BtnSimpan)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
