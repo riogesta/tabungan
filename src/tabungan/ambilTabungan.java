@@ -31,9 +31,10 @@ public class ambilTabungan extends javax.swing.JFrame {
     public ambilTabungan() {
         initComponents();
         fillComboBox();
-        tfPenabung.setVisible(false);
+        tfKodePenabung.setVisible(false);
+        tfNamaPenabung.setVisible(false);
         
-        String [] fieldMasuk = {"Nama", "diambil", "tanggal ambil"};
+        String [] fieldMasuk = {"Nama", "Diambil", "Tanggal ambil"};
         model = new DefaultTableModel(fieldMasuk, 0);
         TbAmbilTabung.setModel(model);
         showDataNabung();
@@ -51,20 +52,21 @@ public class ambilTabungan extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         tfNamaPenabung = new javax.swing.JTextField();
-        saldo = new javax.swing.JTextField();
+        tfSaldoAmbil = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        BtnAmbil = new javax.swing.JButton();
+        btnAmbil = new javax.swing.JButton();
         BtnEdit = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TbAmbilTabung = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
+        lblSisa = new javax.swing.JLabel();
         cbPenabung = new javax.swing.JComboBox<>();
-        tfPenabung = new javax.swing.JTextField();
+        tfKodePenabung = new javax.swing.JTextField();
+        dcTanggalAmbil = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,22 +82,21 @@ public class ambilTabungan extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Ambil Tabungan");
+        setTitle("Ambil Tabungan");
+        setResizable(false);
 
         jLabel2.setText("Kode Tabungan");
 
-        jLabel3.setText("Nama");
+        jLabel3.setText("Tanggal ambil");
 
         jLabel4.setText("Saldo yang diambil");
 
         jLabel5.setText("Sisa");
 
-        BtnAmbil.setText("Ambil");
-        BtnAmbil.addActionListener(new java.awt.event.ActionListener() {
+        btnAmbil.setText("Ambil");
+        btnAmbil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAmbilActionPerformed(evt);
+                btnAmbilActionPerformed(evt);
             }
         });
 
@@ -120,12 +121,21 @@ public class ambilTabungan extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(TbAmbilTabung);
 
-        jLabel6.setText("0");
+        lblSisa.setText("0");
 
         cbPenabung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- pilih -" }));
         cbPenabung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPenabungActionPerformed(evt);
+            }
+        });
+
+        dcTanggalAmbil.setDateFormatString("d - MMMM - yyyy");
+
+        jButton1.setText("kembali");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -137,14 +147,9 @@ public class ambilTabungan extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tfPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(170, 170, 170)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(BtnAmbil, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,50 +161,57 @@ public class ambilTabungan extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(saldo, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbPenabung, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tfNamaPenabung, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                                .addComponent(cbPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(44, 44, 44)
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel6)))))
+                                .addComponent(lblSisa))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(dcTanggalAmbil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfSaldoAmbil, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAmbil, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(cbPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(lblSisa)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tfPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(cbPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)))
                         .addGap(18, 18, 18)
+                        .addComponent(dcTanggalAmbil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(saldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnAmbil, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addComponent(BtnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                            .addComponent(jLabel4)
+                            .addComponent(tfSaldoAmbil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BtnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAmbil, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -216,25 +228,50 @@ public class ambilTabungan extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnAmbilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAmbilActionPerformed
+    private void btnAmbilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAmbilActionPerformed
         try {
+            
+            // ~ cek sisa tabungan
+            // cek semua uang yang di ambil
+            String sqlAmbil = "SELECT SUM(ambil) FROM tb_ambiltabungan WHERE kode_penabung="+tfKodePenabung.getText()+"";
+            // cek semua uang yang di tabung
+            String sqlTabungan = "SELECT SUM(nabung) FROM tb_tabungan WHERE kode_penabung="+tfKodePenabung.getText()+"";
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
-            conn.createStatement().executeUpdate("INSERT INTO tb_ambiltabungan VALUES(null, '"+tfNamaPenabung.getText()+"', '"+saldo.getText()+"'");
+            ResultSet rsAmbil = conn.createStatement().executeQuery(sqlAmbil);
+            ResultSet rsTabungan = conn.createStatement().executeQuery(sqlTabungan);
+            
+            if (rsAmbil.next() & rsTabungan.next()){
+                int ambil = rsAmbil.getInt("SUM(ambil)");
+                int tabungan = rsTabungan.getInt("SUM(nabung)");
+                int sisa = tabungan - ambil;
+                
+                if (sisa == 0) {
+                    JOptionPane.showMessageDialog(this, "saldo kamu "+sisa+" rupiah\npengambilan tidak di perbolehkan ");
+                    return ;
+                } else if (Integer.parseInt(tfSaldoAmbil.getText()) > sisa) {
+                    JOptionPane.showMessageDialog(this, "saldo kamu tidak cukup");
+                    return ;
+                }
+            }
+            
+            //Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
+            conn.createStatement().executeUpdate("INSERT INTO tb_ambiltabungan VALUES(null, '"+tfKodePenabung.getText()+"', '"+tfSaldoAmbil.getText()+"', '"+((JTextField)dcTanggalAmbil.getDateEditor().getUiComponent()).getText()+"')");
             JOptionPane.showMessageDialog(this, "Tersimpan!");
-            //resetNabung();
+            resetAmbilTabungan();
             showDataNabung();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal tersimpan!\n"+e);
         }
-    }//GEN-LAST:event_BtnAmbilActionPerformed
+    }//GEN-LAST:event_btnAmbilActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         try {
             // TODO add your handling code here:
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
-            conn.createStatement().executeUpdate("UPDATE tb_ambiltabungan SET(null, saldo='"+saldo.getText()+"',  WHERE nama='"+tfNamaPenabung.getText()+"'");
+            conn.createStatement().executeUpdate("UPDATE tb_ambiltabungan SET(null, saldo='"+tfSaldoAmbil.getText()+"',  WHERE nama='"+tfNamaPenabung.getText()+"'");
             JOptionPane.showMessageDialog(this, "edit berhasil");
             showDataNabung();
         } catch (SQLException e) {
@@ -259,12 +296,36 @@ public class ambilTabungan extends javax.swing.JFrame {
                 
             }
             
-            //tfPenabung.setText(kode);
+            // ~ cek sisa tabungan
+            // cek semua uang yang di ambil
+            String sqlAmbil = "SELECT SUM(ambil) FROM tb_ambiltabungan WHERE kode_penabung="+Integer.parseInt(kode)+"";
+            // cek semua uang yang di tabung
+            String sqlTabungan = "SELECT SUM(nabung) FROM tb_tabungan WHERE kode_penabung="+Integer.parseInt(kode)+"";
+            
+            ResultSet rsAmbil = conn.createStatement().executeQuery(sqlAmbil);
+            ResultSet rsTabungan = conn.createStatement().executeQuery(sqlTabungan);
+            
+            if (rsAmbil.next() & rsTabungan.next()){
+                int ambil = rsAmbil.getInt("SUM(ambil)");
+                int tabungan = rsTabungan.getInt("SUM(nabung)");
+                
+                int sisa = tabungan - ambil;
+                lblSisa.setText(Integer.toString(sisa));
+            }
+            
+            
+            tfKodePenabung.setText(kode);
             tfNamaPenabung.setText(n);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+          
         }
     }//GEN-LAST:event_cbPenabungActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new Beranda().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,6 +362,14 @@ public class ambilTabungan extends javax.swing.JFrame {
         });
     }
     
+    public void resetAmbilTabungan () {
+        tfKodePenabung.setText(null);
+        cbPenabung.setSelectedItem(null);
+        ((JTextField)dcTanggalAmbil.getDateEditor().getUiComponent()).setText(null);
+        tfSaldoAmbil.setText(null);
+        lblSisa.setText("0");
+    }
+    
     public void fillComboBox(){
         try {
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
@@ -320,10 +389,10 @@ public class ambilTabungan extends javax.swing.JFrame {
     }
     
     public void showDataNabung(){
-        //int row = TbAmbilTabung.getRowCount();
-        //for(int i = 0 ; i < row ; i++){
-        //    model.removeRow(0);
-        //}
+        int row = TbAmbilTabung.getRowCount();
+        for(int i = 0 ; i < row ; i++){
+            model.removeRow(0);
+        }
         
         try{
             String sql = "SELECT tb_penabung.nama, tb_ambiltabungan.ambil , tb_ambiltabungan.tgl_ambil\n" +
@@ -342,22 +411,23 @@ public class ambilTabungan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnAmbil;
     private javax.swing.JButton BtnEdit;
     private javax.swing.JTable TbAmbilTabung;
+    private javax.swing.JButton btnAmbil;
     private javax.swing.JComboBox<String> cbPenabung;
-    private javax.swing.JLabel jLabel1;
+    private com.toedter.calendar.JDateChooser dcTanggalAmbil;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField saldo;
+    private javax.swing.JLabel lblSisa;
+    private javax.swing.JTextField tfKodePenabung;
     private javax.swing.JTextField tfNamaPenabung;
-    private javax.swing.JTextField tfPenabung;
+    private javax.swing.JTextField tfSaldoAmbil;
     // End of variables declaration//GEN-END:variables
 }
