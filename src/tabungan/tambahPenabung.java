@@ -60,26 +60,31 @@ public class tambahPenabung extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel2.setText("Nama");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 46, -1, -1));
-        getContentPane().add(TFNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 43, 300, -1));
+        getContentPane().add(TFNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 43, 290, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel3.setText("Jenis kelamin");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 84, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel4.setText("No. telp.");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 122, -1, -1));
-        getContentPane().add(TFTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 119, 300, -1));
+        getContentPane().add(TFTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 119, 290, -1));
 
         TAAlamat.setColumns(20);
         TAAlamat.setRows(5);
         jScrollPane1.setViewportView(TAAlamat);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 157, 300, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 157, 290, -1));
 
+        jLabel5.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel5.setText("Alamat");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 157, -1, -1));
 
+        BtnSimpan.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         BtnSimpan.setText("Simpan");
         BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,10 +94,11 @@ public class tambahPenabung extends javax.swing.JFrame {
         getContentPane().add(BtnSimpan, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 265, -1, -1));
 
         CBJenisKel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- pilih -", "Laki - Laki", "Perempuan", " " }));
-        getContentPane().add(CBJenisKel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 81, 300, -1));
+        getContentPane().add(CBJenisKel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 81, 290, -1));
 
         jPanel1.setBackground(new java.awt.Color(38, 78, 112));
 
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Kembali");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -108,7 +114,7 @@ public class tambahPenabung extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(355, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

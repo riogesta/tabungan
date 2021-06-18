@@ -93,6 +93,7 @@ public class Nabung extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Kembali");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -117,6 +118,7 @@ public class Nabung extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(712, 399));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel2.setText("Penabung");
 
         cbPenabung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- pilih -" }));
@@ -126,12 +128,15 @@ public class Nabung extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel3.setText("Nabung");
 
+        jLabel5.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel5.setText("Tanggal");
 
         dcTanggal.setDateFormatString("d - MMMM - yyyy");
 
+        btnSimpan.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         btnSimpan.setText("Simpan");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +144,7 @@ public class Nabung extends javax.swing.JFrame {
             }
         });
 
+        tbNabung.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbNabung.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -177,7 +183,7 @@ public class Nabung extends javax.swing.JFrame {
                                 .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );

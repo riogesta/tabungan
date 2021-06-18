@@ -117,6 +117,7 @@ public class ambilTabungan extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Kembali");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,20 +142,25 @@ public class ambilTabungan extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel2.setText("Kode Tabungan");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel3.setText("Tanggal ambil");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel4.setText("Saldo yang diambil");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
         jPanel1.add(tfNamaPenabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 33, -1));
         jPanel1.add(tfSaldoAmbil, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 184, -1));
 
+        jLabel5.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel5.setText("Sisa");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
 
+        btnAmbil.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         btnAmbil.setText("Ambil");
         btnAmbil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,14 +169,16 @@ public class ambilTabungan extends javax.swing.JFrame {
         });
         jPanel1.add(btnAmbil, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 74, 34));
 
+        jButton2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jButton2.setText("Cetak");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 190, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 190, -1, 30));
 
+        BtnEdit.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         BtnEdit.setText("Edit");
         BtnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +187,7 @@ public class ambilTabungan extends javax.swing.JFrame {
         });
         jPanel1.add(BtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 66, 34));
 
-        TbAmbilTabung.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TbAmbilTabung.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
         TbAmbilTabung.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -193,8 +201,9 @@ public class ambilTabungan extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(TbAmbilTabung);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 450, 151));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 231, 450, 140));
 
+        lblSisa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblSisa.setText("0");
         jPanel1.add(lblSisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, -1, -1));
 
