@@ -5,6 +5,7 @@
  */
 package tabungan;
 
+import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,7 +47,7 @@ public class Nabung extends javax.swing.JFrame {
         tfKodePenabung.setVisible(false);
         tfNamaPenabung.setVisible(false);
         //
-        String [] fieldMasuk = {"Nama", "Nabung", "Tanggal"};
+        String [] fieldMasuk = {"Kode","Nama", "Nabung", "Tanggal"};
         model = new DefaultTableModel(fieldMasuk, 0);
         tbNabung.setModel(model);
         showDataNabung();
@@ -64,6 +65,7 @@ public class Nabung extends javax.swing.JFrame {
 
         panelDraggable = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         cbPenabung = new javax.swing.JComboBox<>();
@@ -93,27 +95,45 @@ public class Nabung extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(38, 78, 112));
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back(white).png"))); // NOI18N
         jLabel1.setText("Kembali");
+        jLabel1.setOpaque(true);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
         });
+
+        jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Nabung");
 
         javax.swing.GroupLayout panelDraggableLayout = new javax.swing.GroupLayout(panelDraggable);
         panelDraggable.setLayout(panelDraggableLayout);
         panelDraggableLayout.setHorizontalGroup(
             panelDraggableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDraggableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelDraggableLayout.setVerticalGroup(
             panelDraggableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addGroup(panelDraggableLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.setPreferredSize(new java.awt.Dimension(712, 399));
@@ -156,6 +176,11 @@ public class Nabung extends javax.swing.JFrame {
                 "nama", "tanggal", "nabung"
             }
         ));
+        tbNabung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbNabungMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbNabung);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -180,9 +205,9 @@ public class Nabung extends javax.swing.JFrame {
                             .addComponent(tfNabung, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSimpan)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
@@ -209,8 +234,8 @@ public class Nabung extends javax.swing.JFrame {
                         .addComponent(btnSimpan)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(tfNamaPenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfKodePenabung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
@@ -289,6 +314,34 @@ public class Nabung extends javax.swing.JFrame {
         Ymouse =  evt.getY();
     }//GEN-LAST:event_panelDraggableMousePressed
 
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        // TODO add your handling code here:
+        jLabel1.setBackground(new Color(18, 43, 64));
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        jLabel1.setBackground(new Color(38,78,112));
+        
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void tbNabungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbNabungMouseClicked
+        // TODO add your handling code here:
+        int i = tbNabung.getSelectedRow();
+        infoNabung in = new infoNabung();
+        
+        if(i > -1){
+            
+            String kodeNabung = model.getValueAt(i, 0).toString();
+            String nama = model.getValueAt(i, 1).toString();
+            String nabung = model.getValueAt(i, 2).toString();
+            //String tgl = model.getValueAt(i, 3).toString();
+            in.getData(kodeNabung, nama, nabung);
+            
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbNabungMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -359,14 +412,14 @@ public class Nabung extends javax.swing.JFrame {
         }
         
         try{
-            String sql = "SELECT tb_penabung.nama, tb_tabungan.nabung, tb_tabungan.tgl "
+            String sql = "SELECT tb_tabungan.kode_tabungan ,tb_penabung.nama, tb_tabungan.nabung, tb_tabungan.tgl "
                     + "FROM tb_penabung "
                     + "INNER JOIN tb_tabungan ON tb_tabungan.kode_penabung = tb_penabung.kode_penabung";
             Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
             ResultSet rs = conn.createStatement().executeQuery(sql);
             
             while(rs.next()){
-                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3)});
+                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3), rs.getString(4)});
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "kesalahan\n"+e);
@@ -380,6 +433,7 @@ public class Nabung extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

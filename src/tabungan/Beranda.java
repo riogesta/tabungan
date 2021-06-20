@@ -10,9 +10,15 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -23,6 +29,8 @@ public class Beranda extends javax.swing.JFrame {
     /**
      * Creates new form Beranda
      */
+    
+    public String title;
     
     static boolean maximized = true;
     int Xmouse;
@@ -38,18 +46,21 @@ public class Beranda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setShape(new RoundRectangle2D.Double(0,0, 700,480, 15,15));
         // end-Rounded UI
-        
-        
+
         initComponents();
+        // percantik
+        lineAmbilTabungan.setVisible(false);
+        lineNabung.setVisible(false);
+        lineTambahPenabung.setVisible(false);
         
         //
-        String [] title_tb_penabung = {"Kode", "Nama", "Alamat", "No.Telepon"};
+        String [] title_tb_penabung = {"Kode", "Nama", "Jenis Kelamin", "No.Telepon", "Alamat"};
         model_penabung = new DefaultTableModel(title_tb_penabung,0);
-        TbPenabung.setModel(model_penabung);
+        tbPenabung.setModel(model_penabung);
         
         showDataPenabung();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,15 +71,15 @@ public class Beranda extends javax.swing.JFrame {
     private void initComponents() {
 
         panelMenu = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        lblTambahPenabung = new javax.swing.JLabel();
+        lblNabung = new javax.swing.JLabel();
+        lblAmbilTabungan = new javax.swing.JLabel();
+        lineAmbilTabungan = new javax.swing.JPanel();
+        lineNabung = new javax.swing.JPanel();
+        lineTambahPenabung = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TbPenabung = new javax.swing.JTable();
+        tbPenabung = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         panelDraggable = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
@@ -81,87 +92,105 @@ public class Beranda extends javax.swing.JFrame {
 
         panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        jLabel2.setText("Tambah Penabung");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblTambahPenabung.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        lblTambahPenabung.setText("Tambah Penabung");
+        lblTambahPenabung.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblTambahPenabung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lblTambahPenabungMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblTambahPenabungMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblTambahPenabungMouseExited(evt);
             }
         });
-        panelMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+        panelMenu.add(lblTambahPenabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 10, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        jLabel4.setText("Nabung");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblNabung.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        lblNabung.setText("Nabung");
+        lblNabung.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblNabung.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                lblNabungMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblNabungMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblNabungMouseExited(evt);
             }
         });
-        panelMenu.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
+        panelMenu.add(lblNabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        jLabel5.setText("Ambil Tabungan");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAmbilTabungan.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 13)); // NOI18N
+        lblAmbilTabungan.setText("Ambil Tabungan");
+        lblAmbilTabungan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblAmbilTabungan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                lblAmbilTabunganMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAmbilTabunganMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAmbilTabunganMouseExited(evt);
             }
         });
-        panelMenu.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 10, -1, -1));
+        panelMenu.add(lblAmbilTabungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
-        jPanel4.setBackground(new java.awt.Color(38, 78, 112));
+        lineAmbilTabungan.setBackground(new java.awt.Color(38, 78, 112));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 75, Short.MAX_VALUE)
+        javax.swing.GroupLayout lineAmbilTabunganLayout = new javax.swing.GroupLayout(lineAmbilTabungan);
+        lineAmbilTabungan.setLayout(lineAmbilTabunganLayout);
+        lineAmbilTabunganLayout.setHorizontalGroup(
+            lineAmbilTabunganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
-        );
-
-        panelMenu.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, 75, 2));
-
-        jPanel3.setBackground(new java.awt.Color(38, 78, 112));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 35, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2, Short.MAX_VALUE)
+        lineAmbilTabunganLayout.setVerticalGroup(
+            lineAmbilTabunganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
         );
 
-        panelMenu.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 35, 2));
+        panelMenu.add(lineAmbilTabungan, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 34, 120, 3));
 
-        jPanel1.setBackground(new java.awt.Color(38, 78, 112));
+        lineNabung.setBackground(new java.awt.Color(38, 78, 112));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
+        javax.swing.GroupLayout lineNabungLayout = new javax.swing.GroupLayout(lineNabung);
+        lineNabung.setLayout(lineNabungLayout);
+        lineNabungLayout.setHorizontalGroup(
+            lineNabungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 55, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        lineNabungLayout.setVerticalGroup(
+            lineNabungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        panelMenu.add(lineNabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 34, 55, 3));
+
+        lineTambahPenabung.setBackground(new java.awt.Color(38, 78, 112));
+
+        javax.swing.GroupLayout lineTambahPenabungLayout = new javax.swing.GroupLayout(lineTambahPenabung);
+        lineTambahPenabung.setLayout(lineTambahPenabungLayout);
+        lineTambahPenabungLayout.setHorizontalGroup(
+            lineTambahPenabungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+        lineTambahPenabungLayout.setVerticalGroup(
+            lineTambahPenabungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        panelMenu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 90, 2));
+        panelMenu.add(lineTambahPenabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 34, 130, 3));
 
-        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 700, 50));
+        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 419, 700, 60));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TbPenabung.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        TbPenabung.setModel(new javax.swing.table.DefaultTableModel(
+        tbPenabung.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        tbPenabung.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -172,7 +201,12 @@ public class Beranda extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TbPenabung);
+        tbPenabung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPenabungMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbPenabung);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 64, 650, 310));
 
@@ -194,20 +228,36 @@ public class Beranda extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setBackground(new java.awt.Color(255, 255, 255));
+        btnExit.setBackground(new java.awt.Color(38, 78, 112));
         btnExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close.png"))); // NOI18N
+        btnExit.setOpaque(true);
         btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnExitMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
         });
 
+        btnHide.setBackground(new java.awt.Color(38, 78, 112));
         btnHide.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnHide.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1).png"))); // NOI18N
+        btnHide.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnHide.setOpaque(true);
         btnHide.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnHideMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHideMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHideMouseExited(evt);
             }
         });
 
@@ -222,19 +272,16 @@ public class Beranda extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDraggableLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 565, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 564, Short.MAX_VALUE)
                 .addComponent(btnHide, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addGap(2, 2, 2)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelDraggableLayout.setVerticalGroup(
             panelDraggableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDraggableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnHide, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(btnHide, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelDraggable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 30));
@@ -243,23 +290,23 @@ public class Beranda extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void lblTambahPenabungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTambahPenabungMouseClicked
         // TODO add your handling code here:
         new tambahPenabung().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_lblTambahPenabungMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void lblNabungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNabungMouseClicked
         // TODO add your handling code here:
         new Nabung().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_lblNabungMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void lblAmbilTabunganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbilTabunganMouseClicked
         // TODO add your handling code here:
         new ambilTabungan().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_lblAmbilTabunganMouseClicked
 
     private void panelDraggableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDraggableMousePressed
         // TODO add your handling code here:
@@ -285,6 +332,83 @@ public class Beranda extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_btnHideMouseClicked
+
+    private void tbPenabungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPenabungMouseClicked
+        // TODO add your handling code here:
+        int i = tbPenabung.getSelectedRow();
+        infoPenabung ip = new infoPenabung();
+        
+        if(i > -1){
+            
+            ip.setVisible(true); ip.pack();
+            //ip.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            
+            ip.tfKodePenabung.setText(model_penabung.getValueAt(i, 0).toString());
+            ip.tfNamaPenabung.setText(model_penabung.getValueAt(i, 1).toString());
+            String jk = model_penabung.getValueAt(i, 2).toString();
+            String kode = model_penabung.getValueAt(i, 0).toString();
+            ip.cbJenisKelamin.setSelectedItem(jk);
+            
+            ip.getKodePenabung(kode);
+            
+            ip.tfNoTelp.setText(model_penabung.getValueAt(i, 3).toString());
+            ip.taAlamat.setText(model_penabung.getValueAt(i, 4).toString());
+            
+            this.dispose();
+        }
+        
+        
+    }//GEN-LAST:event_tbPenabungMouseClicked
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        // TODO add your handling code here:
+        btnExit.setBackground(new Color(232, 17, 35));
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+        // TODO add your handling code here:
+        btnExit.setBackground(new Color(38,78,112));
+    }//GEN-LAST:event_btnExitMouseExited
+
+    private void lblAmbilTabunganMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbilTabunganMouseEntered
+        // TODO add your handling code here:
+        lineAmbilTabungan.setVisible(true);
+    }//GEN-LAST:event_lblAmbilTabunganMouseEntered
+
+    private void lblAmbilTabunganMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAmbilTabunganMouseExited
+        // TODO add your handling code here:
+        lineAmbilTabungan.setVisible(false);
+    }//GEN-LAST:event_lblAmbilTabunganMouseExited
+
+    private void lblNabungMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNabungMouseEntered
+        // TODO add your handling code here:
+        lineNabung.setVisible(true);
+    }//GEN-LAST:event_lblNabungMouseEntered
+
+    private void lblNabungMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNabungMouseExited
+        // TODO add your handling code here:
+        lineNabung.setVisible(false);
+    }//GEN-LAST:event_lblNabungMouseExited
+
+    private void lblTambahPenabungMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTambahPenabungMouseEntered
+        // TODO add your handling code here:
+        lineTambahPenabung.setVisible(true);
+    }//GEN-LAST:event_lblTambahPenabungMouseEntered
+
+    private void lblTambahPenabungMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTambahPenabungMouseExited
+        // TODO add your handling code here:
+        lineTambahPenabung.setVisible(false);
+    }//GEN-LAST:event_lblTambahPenabungMouseExited
+
+    private void btnHideMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHideMouseEntered
+        // TODO add your handling code here:
+        btnHide.setBackground(new Color(18, 43, 64));
+    }//GEN-LAST:event_btnHideMouseEntered
+
+    private void btnHideMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHideMouseExited
+        // TODO add your handling code here:
+        btnHide.setBackground(new Color(38,78,112));
+    }//GEN-LAST:event_btnHideMouseExited
 
     /**
      * @param args the command line arguments
@@ -325,33 +449,40 @@ public class Beranda extends javax.swing.JFrame {
     public void showDataPenabung(){
         
         
-        try{
-            Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
-            ResultSet rs = conn.createStatement().executeQuery("select * from tb_penabung");
+        int row = model_penabung.getRowCount();
+        for(int i = 0 ; i < row ; i++){
+            model_penabung.removeRow(0);
+        }
+        
+        int no = 1;
+        try {
+            Connection cn = (Connection) tabungan.Conn_db.mysqlconn();
+            ResultSet rs = cn.createStatement().executeQuery("select * from tb_penabung");
             
             while(rs.next()){
-                model_penabung.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)});
+                //String data [] = {rs.getString,rs.getString(1),rs.getString(2),rs.getString(3)};
+                model_penabung.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5)});
             }
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "kesalahan\n"+e);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "kesalahan\n"+ex);
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TbPenabung;
     private javax.swing.JLabel btnExit;
     private javax.swing.JLabel btnHide;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAmbilTabungan;
+    private javax.swing.JLabel lblNabung;
+    private javax.swing.JLabel lblTambahPenabung;
+    private javax.swing.JPanel lineAmbilTabungan;
+    private javax.swing.JPanel lineNabung;
+    private javax.swing.JPanel lineTambahPenabung;
     private javax.swing.JPanel panelDraggable;
     private javax.swing.JPanel panelMenu;
+    private javax.swing.JTable tbPenabung;
     // End of variables declaration//GEN-END:variables
 }

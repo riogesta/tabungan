@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tabungan;
+import java.awt.Color;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,11 +50,11 @@ public class ambilTabungan extends javax.swing.JFrame {
         initComponents();
         fillComboBox();
         tfKodePenabung.setVisible(false);
-        tfNamaPenabung.setVisible(false);
+        tfBebas.setVisible(false);
         
-        String [] fieldMasuk = {"Nama", "Diambil", "Tanggal ambil"};
+        String [] fieldMasuk = {"Kode","Nama", "Diambil", "Tanggal ambil"};
         model = new DefaultTableModel(fieldMasuk, 0);
-        TbAmbilTabung.setModel(model);
+        tbAmbilTabung.setModel(model);
         showDataNabung();
     }
 
@@ -70,18 +71,18 @@ public class ambilTabungan extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         paneDraggable = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        tfNamaPenabung = new javax.swing.JTextField();
+        tfBebas = new javax.swing.JTextField();
         tfSaldoAmbil = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnAmbil = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        BtnEdit = new javax.swing.JButton();
+        btnCetak = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TbAmbilTabung = new javax.swing.JTable();
+        tbAmbilTabung = new javax.swing.JTable();
         lblSisa = new javax.swing.JLabel();
         cbPenabung = new javax.swing.JComboBox<>();
         tfKodePenabung = new javax.swing.JTextField();
@@ -117,33 +118,49 @@ public class ambilTabungan extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(38, 78, 112));
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back(white).png"))); // NOI18N
         jLabel1.setText("Kembali");
+        jLabel1.setOpaque(true);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
         });
+
+        jLabel6.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 13)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Ambil Tabungan");
 
         javax.swing.GroupLayout paneDraggableLayout = new javax.swing.GroupLayout(paneDraggable);
         paneDraggable.setLayout(paneDraggableLayout);
         paneDraggableLayout.setHorizontalGroup(
             paneDraggableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(paneDraggableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         paneDraggableLayout.setVerticalGroup(
             paneDraggableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        jLabel2.setText("Kode Tabungan");
+        jLabel2.setText("Nama Penabung");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
@@ -152,9 +169,9 @@ public class ambilTabungan extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel4.setText("Saldo yang diambil");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
-        jPanel1.add(tfNamaPenabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 33, -1));
-        jPanel1.add(tfSaldoAmbil, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 184, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(tfBebas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 33, -1));
+        jPanel1.add(tfSaldoAmbil, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 184, -1));
 
         jLabel5.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
         jLabel5.setText("Sisa");
@@ -169,26 +186,17 @@ public class ambilTabungan extends javax.swing.JFrame {
         });
         jPanel1.add(btnAmbil, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 74, 34));
 
-        jButton2.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        jButton2.setText("Cetak");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCetak.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
+        btnCetak.setText("Cetak");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCetakActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 190, -1, 30));
+        jPanel1.add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 190, -1, 30));
 
-        BtnEdit.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 12)); // NOI18N
-        BtnEdit.setText("Edit");
-        BtnEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEditActionPerformed(evt);
-            }
-        });
-        jPanel1.add(BtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 66, 34));
-
-        TbAmbilTabung.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
-        TbAmbilTabung.setModel(new javax.swing.table.DefaultTableModel(
+        tbAmbilTabung.setFont(new java.awt.Font("Times New Roman", 0, 13)); // NOI18N
+        tbAmbilTabung.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -199,9 +207,14 @@ public class ambilTabungan extends javax.swing.JFrame {
                 "Kode Tabungan", "Nama", "Saldo yang diambil", "Sisa"
             }
         ));
-        jScrollPane2.setViewportView(TbAmbilTabung);
+        tbAmbilTabung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbAmbilTabungMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tbAmbilTabung);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 231, 450, 140));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 450, 140));
 
         lblSisa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblSisa.setText("0");
@@ -216,7 +229,7 @@ public class ambilTabungan extends javax.swing.JFrame {
         jPanel1.add(cbPenabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 184, -1));
         jPanel1.add(tfKodePenabung, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 27, -1));
 
-        dcTanggalAmbil.setDateFormatString("d - MMMM - yyyy");
+        dcTanggalAmbil.setDateFormatString("YYYY-MM-d");
         jPanel1.add(dcTanggalAmbil, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 184, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,18 +291,6 @@ public class ambilTabungan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAmbilActionPerformed
 
-    private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        try {
-            // TODO add your handling code here:
-            Connection conn = (Connection) tabungan.Conn_db.mysqlconn();
-            conn.createStatement().executeUpdate("UPDATE tb_ambiltabungan SET(null, saldo='"+tfSaldoAmbil.getText()+"',  WHERE nama='"+tfNamaPenabung.getText()+"'");
-            JOptionPane.showMessageDialog(this, "edit berhasil");
-            showDataNabung();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Gagal tersimpan!\n"+e);
-        }
-    }//GEN-LAST:event_BtnEditActionPerformed
-
     private void cbPenabungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPenabungActionPerformed
         // TODO add your handling code here:
         try {
@@ -326,13 +327,13 @@ public class ambilTabungan extends javax.swing.JFrame {
             
             
             tfKodePenabung.setText(kode);
-            tfNamaPenabung.setText(n);
+            tfBebas.setText(n);
         } catch (Exception e) {
           
         }
     }//GEN-LAST:event_cbPenabungActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
         try {
             Connection koneksi = tabungan.Conn_db.mysqlconn();
@@ -342,7 +343,7 @@ public class ambilTabungan extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCetakActionPerformed
 
     private void paneDraggableMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneDraggableMouseDragged
         // TODO add your handling code here:
@@ -364,6 +365,33 @@ public class ambilTabungan extends javax.swing.JFrame {
         new Beranda().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        // TODO add your handling code here:
+        jLabel1.setBackground(new Color(18, 43, 64));
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        jLabel1.setBackground(new Color(38,78,112));
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void tbAmbilTabungMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAmbilTabungMouseClicked
+        // TODO add your handling code here:
+        int i = tbAmbilTabung.getSelectedRow();
+        infoAmbilTabungan info = new infoAmbilTabungan();
+        
+        if(i > -1){
+            
+            String kodeAmbil = model.getValueAt(i, 0).toString();
+            String nama = model.getValueAt(i, 1).toString();
+            String ambil = model.getValueAt(i, 2).toString();
+            String tgl = model.getValueAt(i, 3).toString();
+            info.getData(kodeAmbil, ambil, nama, tgl);
+            
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbAmbilTabungMouseClicked
 
     /**
      * @param args the command line arguments
@@ -427,13 +455,13 @@ public class ambilTabungan extends javax.swing.JFrame {
     }
     
     public void showDataNabung(){
-        int row = TbAmbilTabung.getRowCount();
+        int row = tbAmbilTabung.getRowCount();
         for(int i = 0 ; i < row ; i++){
             model.removeRow(0);
         }
         
         try{
-            String sql = "SELECT tb_penabung.nama, tb_ambiltabungan.ambil , tb_ambiltabungan.tgl_ambil\n" +
+            String sql = "SELECT tb_ambiltabungan.kode_ambil, tb_penabung.nama, tb_ambiltabungan.ambil , DATE_FORMAT(tb_ambiltabungan.tgl_ambil, '%d-%M-%Y')\n" +
                             "FROM tb_penabung\n" +
                             "INNER JOIN tb_ambiltabungan ON tb_ambiltabungan.kode_penabung = tb_penabung.kode_penabung";
                     
@@ -441,7 +469,7 @@ public class ambilTabungan extends javax.swing.JFrame {
             ResultSet rs = conn.createStatement().executeQuery(sql);
             
             while(rs.next()){
-                model.addRow(new Object[]{rs.getString(1),rs.getString(2),rs.getString(3)});
+                model.addRow(new Object[]{rs.getString(1), rs.getString(2),rs.getString(3),rs.getString(4)});
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "kesalahan\n"+e);
@@ -449,25 +477,25 @@ public class ambilTabungan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnEdit;
-    private javax.swing.JTable TbAmbilTabung;
     private javax.swing.JButton btnAmbil;
+    private javax.swing.JButton btnCetak;
     private javax.swing.JComboBox<String> cbPenabung;
     private com.toedter.calendar.JDateChooser dcTanggalAmbil;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSisa;
     private javax.swing.JPanel paneDraggable;
+    private javax.swing.JTable tbAmbilTabung;
+    private javax.swing.JTextField tfBebas;
     private javax.swing.JTextField tfKodePenabung;
-    private javax.swing.JTextField tfNamaPenabung;
     private javax.swing.JTextField tfSaldoAmbil;
     // End of variables declaration//GEN-END:variables
 }
