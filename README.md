@@ -3,4 +3,4 @@ aplikasi tabungan sederhana pengganti tabungan buku yang dulu sering kita gunaka
 aplikasi ini tidak ada Login, jadi penggunaan aplikasi hanya untuk orang yang menyediakan jasa Tabungan saja.
 
 - aplikasi ini di buat dari bahasa pemrograman java.<br>
-- aplikasi ini menggunakan look and feel <i>Windows<i>, mungkin tampilannya akan sedikit aneh ketika di jalankan pada sistem operasi lain selain windows.
+- aplikasi ini menggunakan look and feel <i>Windows</i>, mungkin tampilannya akan sedikit aneh ketika di jalankan pada sistem operasi lain selain windows.
