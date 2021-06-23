@@ -25,7 +25,7 @@ public class Conn_db {
             try {
                 String db = "jdbc:mysql://localhost:3306/tabungan_us";
                 String user = "root"; 
-                String pw = "";
+                String pw = "Rahasia"; // give the password database if you use password
                 DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
                 mysql_connection = (Connection) DriverManager.getConnection(db,user,pw);
                 

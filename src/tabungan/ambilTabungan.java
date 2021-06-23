@@ -273,10 +273,10 @@ public class ambilTabungan extends javax.swing.JFrame {
                 int sisa = tabungan - ambil;
                 
                 if (sisa == 0) {
-                    JOptionPane.showMessageDialog(this, "saldo kamu "+sisa+" rupiah\npengambilan tidak di perbolehkan ");
+                    JOptionPane.showMessageDialog(this, "saldo "+cbPenabung.getSelectedItem()+" "+sisa+" rupiah\npengambilan tidak di perbolehkan ");
                     return ;
                 } else if (Integer.parseInt(tfSaldoAmbil.getText()) > sisa) {
-                    JOptionPane.showMessageDialog(this, "saldo kamu tidak cukup");
+                    JOptionPane.showMessageDialog(this, "saldo "+cbPenabung.getSelectedItem()+" tidak cukup");
                     return ;
                 }
             }
